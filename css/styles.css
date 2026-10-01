@@ -252,11 +252,16 @@ a{color:var(--ink)}a:hover{color:var(--accent)}
 .hdr nav a{font:var(--type-nav);padding:12px 20px;border-radius:var(--radius-pill);color:var(--ink);transition:background var(--dur-fast) var(--ease-standard),color var(--dur-fast) var(--ease-standard)}
 .hdr nav a:hover{background:var(--grey-50);color:var(--ink)}
 .hdr nav a[aria-current="true"]{background:var(--blue-100);color:var(--blue-600)}
-.hdr .cta{margin-left:auto;display:flex;align-items:center;gap:16px;height:52px;padding:0 5px 0 28px;background:var(--blue-600);color:var(--white);border-radius:var(--radius-pill);font:500 17px/1 var(--font-sans);white-space:nowrap;transition:background var(--dur-base) var(--ease-standard)}
-.hdr .cta:hover{background:var(--blue-700);color:var(--white)}
-.hdr .cta .ic{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--white);color:var(--blue-600);flex:none;transition:transform var(--dur-base) var(--ease-out)}
-.hdr .cta:hover .ic{transform:rotate(45deg)}
-.hdr .cta svg{width:16px;height:16px}
+/* pill button: label + arrow circle; blue by default, .light for dark grounds */
+.pill{display:inline-flex;align-items:center;gap:16px;height:52px;padding:0 5px 0 28px;background:var(--blue-600);color:var(--white);border-radius:var(--radius-pill);font:500 17px/1 var(--font-sans);white-space:nowrap;transition:background var(--dur-base) var(--ease-standard),color var(--dur-base) var(--ease-standard)}
+.pill:hover{background:var(--blue-700);color:var(--white)}
+.pill .ic{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--white);color:var(--blue-600);flex:none;transition:transform var(--dur-base) var(--ease-out)}
+.pill:hover .ic{transform:rotate(45deg)}
+.pill svg{width:16px;height:16px}
+.pill.light{background:var(--white);color:var(--ink)}
+.pill.light:hover{background:var(--white);color:var(--blue-600)}
+.pill.light .ic{background:var(--blue-600);color:var(--white)}
+.hdr .cta{margin-left:auto}
 .hdr.hide{transform:translateY(calc(-100% - 8px))}
 @media (max-width:860px){.hdr nav{display:none}}
 
@@ -315,10 +320,12 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hero-c .img::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim,0)}
 .hero-c .word{position:absolute;top:50%;font-size:clamp(56px,10vw,176px);font-weight:500;letter-spacing:-.045em;line-height:1;transform:translateY(-50%);will-change:transform}
 .hero-c .w1{right:52%}.hero-c .w2{left:52%}
+.hero-c .grid{position:absolute;inset:0;pointer-events:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.hero-c .grid i{border-left:1px solid rgba(255,255,255,.22)}.hero-c .grid i:first-child{grid-column:2}
 .hero-c .foot{position:absolute;left:0;right:0;bottom:0}
 .hero-c .foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:40px;flex-wrap:wrap}
 .hero-c .foot p{max-width:46ch;font-size:var(--fs-body-l);color:var(--grey-300)}
-.hero-c .foot .btn{background:var(--white);color:var(--ink)}.hero-c .foot .btn:hover{background:var(--accent);color:var(--white)}
+
 .hero-c .top{position:absolute;top:110px;left:0;right:0}
 .hero-c .top .wrap{display:flex;justify-content:space-between}
 .hero-c .top .eb{color:var(--grey-400)}
@@ -326,7 +333,7 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 
 @media (max-width:600px){
 .sec-head{flex-wrap:wrap;align-items:flex-start}
-.hdr .bar{padding:4px}.hdr .logo,.hdr .cta{height:46px}.hdr .logo{padding:0 18px}.hdr .logo img{height:15px}.hdr .cta{padding:0 4px;gap:0}.hdr .cta .ic{width:38px;height:38px;background:transparent;color:var(--white)}.hdr .cta .t{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hdr .bar{padding:4px}.hdr .logo{height:46px}.hdr .logo{padding:0 18px}.hdr .logo img{height:15px}.hdr .cta{height:46px;padding:0 4px;gap:0}.hdr .cta .ic{width:38px;height:38px;background:transparent;color:var(--white)}.hdr .cta .t{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .hero-c .hint{display:none}
 .hero-c .word{font-size:clamp(44px,15vw,72px)}
 .hero-c .w1{right:auto;left:var(--pad);top:42%}
