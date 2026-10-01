@@ -20,11 +20,19 @@ ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
 const hdr=$('#hdr');let lastY=0;
 const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
+// mobile menu: the same nav, shown as a drop-down panel under the bar
+const menuBtn=$('#menuBtn');
+const setMenu=o=>{hdr.classList.toggle('open',o);menuBtn.setAttribute('aria-expanded',o);menuBtn.setAttribute('aria-label',o?'Close menu':'Open menu')};
+menuBtn.onclick=()=>setMenu(!hdr.classList.contains('open'));
+navLinks.forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('open')){setMenu(false);menuBtn.focus()}});
+document.addEventListener('click',e=>{if(hdr.classList.contains('open')&&!hdr.contains(e.target))setMenu(false)});
+matchMedia('(min-width:861px)').addEventListener('change',e=>e.matches&&setMenu(false));
 function tick(){const y=scrollY,vh=innerHeight;
 // highlight the nav link for the section under the header; the hero counts as About
 let cur='manifesto',best=-Infinity;[...navSecs,'contact'].forEach(id=>{const el=document.getElementById(id),t=el?el.getBoundingClientRect().top:Infinity;if(t<=vh*.4&&t>best){best=t;cur=id}});
 navLinks.forEach(a=>a.dataset.sec===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
-hdr.classList.toggle('hide',y>lastY&&y>600);lastY=y;
+hdr.classList.toggle('hide',y>lastY&&y>600&&!hdr.classList.contains('open'));lastY=y;
 const hero=document.body.dataset.hero;
 if(hero==='manifesto'){const s=$('#strip');s.style.transform=`translateX(${-y*.35}px)`}
 if(hero==='editorial'){$('#bImg').style.transform=`scale(${lerp(1.18,1,clamp(y/vh))}) translateY(${y*.06}px)`}
