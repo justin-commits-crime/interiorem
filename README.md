@@ -1,6 +1,6 @@
 # interiorem
 
-Static frontend for **Dasigned**, a design & Shopify studio: the header, the scroll-driven "Designed / Differently" slash hero and the "The idea" manifesto.
+Static frontend for **Dasigned**, a design & e-commerce studio: the header, the scroll-driven "Designed / Differently" slash hero and the "The idea" manifesto.
 
 Unpacked from the Claude Design export *Dasigned — Header, hero & idea* into plain files. There's no build step.
 
@@ -34,5 +34,5 @@ zip -r dist/dasigned-site.zip index.html css js assets
 
 - `?hero=` in the URL selects a hero variant (`slash` is the only one with markup in `index.html`; the CSS for the other variants, `manifesto`, `editorial`, `index`, `annotated` and `signal`, is kept for when those sections are added).
 - The fonts are Google Fonts stand-ins; the original brand fonts weren't supplied.
-- The Services, Work and Shopify nav links point at sections that aren't on the page. The Work, Services and Contact sections were removed; they're in git history before this change.
+- The Services and Work nav links point at sections that aren't on the page. The Work, Services and Contact sections were removed; they're in git history before this change.
 - The Dasigned Headless Wix project still has the "Website enquiry" form and the "Dasigned website" OAuth client from the removed contact form.
