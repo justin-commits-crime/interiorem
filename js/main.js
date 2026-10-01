@@ -28,6 +28,7 @@ navLinks.forEach(a=>a.addEventListener('click',()=>setMenu(false)));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('open')){setMenu(false);menuBtn.focus()}});
 document.addEventListener('click',e=>{if(hdr.classList.contains('open')&&!hdr.contains(e.target))setMenu(false)});
 function tick(){const y=scrollY,vh=innerHeight;
+hdr.classList.toggle('compact',y>40);
 // highlight the nav link for the section under the header; the hero counts as About
 let cur='manifesto',best=-Infinity;[...navSecs,'contact'].forEach(id=>{const el=document.getElementById(id),t=el?el.getBoundingClientRect().top:Infinity;if(t<=vh*.4&&t>best){best=t;cur=id}});
 navLinks.forEach(a=>a.dataset.sec===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
