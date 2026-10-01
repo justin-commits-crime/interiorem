@@ -318,7 +318,7 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 
 .hero-c{height:260vh;background:var(--ink);color:var(--white)}
 .hero-c .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
-.hero-c .img{position:absolute;inset:0;overflow:hidden;perspective:1100px;clip-path:polygon(52% 12%,55% 12%,48% 88%,45% 88%);will-change:clip-path}
+.hero-c .img{position:absolute;inset:0;overflow:hidden;perspective:1100px;clip-path:polygon(51.3% 25.3%,53.25% 25.3%,48.7% 74.7%,46.75% 74.7%);will-change:clip-path}
 .hero-c .in3{position:absolute;inset:0;background:url("../assets/img/hero-slash.jpg") 45% center/cover;will-change:transform}
 .hero-c .img::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim,0)}
 .hero-c .word{position:absolute;top:50%;font-size:clamp(56px,10vw,176px);font-weight:500;letter-spacing:-.045em;line-height:1;transform:translateY(-50%);will-change:transform}

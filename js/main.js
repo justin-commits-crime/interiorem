@@ -37,7 +37,8 @@ const hero=document.body.dataset.hero;
 if(hero==='manifesto'){const s=$('#strip');s.style.transform=`translateX(${-y*.35}px)`}
 if(hero==='editorial'){$('#bImg').style.transform=`scale(${lerp(1.18,1,clamp(y/vh))}) translateY(${y*.06}px)`}
 if(hero==='slash'){const c=$('#heroC'),p=clamp((y-c.offsetTop)/(c.offsetHeight-vh)),e=1-Math.pow(1-p,3);sp=e;
-const tl=lerp(52,0,e),tr=lerp(55,100,e),br=lerp(48,100,e),bl=lerp(45,0,e),ty=lerp(12,0,e),by=lerp(88,100,e);
+// resting slash: the original shape scaled to 65% around the centre (keep in sync with .hero-c .img in the CSS)
+const tl=lerp(51.3,0,e),tr=lerp(53.25,100,e),br=lerp(48.7,100,e),bl=lerp(46.75,0,e),ty=lerp(25.3,0,e),by=lerp(74.7,100,e);
 const img=$('#cImg');img.style.clipPath=`polygon(${tl}% ${ty}%,${tr}% ${ty}%,${br}% ${by}%,${bl}% ${by}%)`;img.style.setProperty('--dim',lerp(0,.45,e));
 // words part sideways on wide screens; on narrow ones that pushes them off-screen, so they part vertically
 if(innerWidth>600){$('#w1').style.transform=`translateY(-50%) translateX(${-e*18}vw)`;$('#w2').style.transform=`translateY(-50%) translateX(${e*18}vw)`}
