@@ -484,6 +484,7 @@ form.enq{grid-column:5/13;display:grid;grid-template-columns:1fr 1fr;gap:36px va
 .enq .sub .mono{color:var(--grey-500)}
 .thanks{grid-column:5/13;display:none;border-top:var(--rule-thick);padding-top:28px}
 .thanks h3{font-size:var(--fs-h1);letter-spacing:-.03em;margin-top:18px}.thanks p{color:var(--grey-600);margin-top:12px;font-size:var(--fs-body-l)}
+.thanks .mail{color:var(--ink);user-select:all}
 .sent form.enq{display:none}.sent .thanks{display:block}
 @media (max-width:860px){.contact .side,form.enq,.thanks{grid-column:1/-1}form.enq{grid-template-columns:1fr}}
 

@@ -54,10 +54,11 @@ const enq=$('#enq');if(enq)enq.onsubmit=e=>{e.preventDefault();
 const bad=[...enq.querySelectorAll('input')].find(i=>!i.checkValidity());
 if(bad){$('#fNote').textContent='Please add your '+bad.name+'.';bad.focus();return}
 const to=$('#cMail').getAttribute('href').replace('mailto:',''),v=n=>enq.elements[n].value.trim();
+$('#tMail').textContent=to;
 const lines=['Name: '+v('name'),'Email: '+v('email')];
 $$('.chips').forEach(c=>{const on=[...c.querySelectorAll('.on')].map(b=>b.textContent);if(on.length)lines.push(c.dataset.name+': '+on.join(', '))});
 if(v('message'))lines.push('',v('message'));
-location.href='mailto:'+to+'?subject='+encodeURIComponent('Project enquiry — '+v('name'))+'&body='+encodeURIComponent(lines.join('\n'));
+try{location.href='mailto:'+to+'?subject='+encodeURIComponent('Project enquiry — '+v('name'))+'&body='+encodeURIComponent(lines.join('\n'))}catch(err){}
 $('#cg').classList.add('sent')};
 
 setHero(new URLSearchParams(location.search).get('hero')||document.body.dataset.hero);
