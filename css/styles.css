@@ -314,7 +314,7 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 @media (max-width:860px){.hero-b .l,.hero-b .r{grid-column:1/-1}}
 
 .hero-c{height:260vh;background:var(--ink);color:var(--white)}
-.hero-c .stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.hero-c .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
 .hero-c .img{position:absolute;inset:0;overflow:hidden;perspective:1100px;clip-path:polygon(52% 12%,55% 12%,48% 88%,45% 88%);will-change:clip-path}
 .hero-c .in3{position:absolute;inset:0;background:url("../assets/img/hero-slash.jpg") 45% center/cover;will-change:transform}
 .hero-c .img::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim,0)}
@@ -338,7 +338,17 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hero-c .word{font-size:clamp(44px,15vw,72px)}
 .hero-c .w1{right:auto;left:var(--pad);top:42%}
 .hero-c .w2{left:auto;right:var(--pad);top:56%}
-.hero-c .foot{background:linear-gradient(to bottom,transparent,var(--ink) 28%);padding-top:48px}
+.hero-c .foot{background:linear-gradient(to bottom,rgba(17,17,19,0),rgba(17,17,19,.75) 45%,var(--ink) 75%);padding-top:120px}
+}
+
+/* phones held sideways: short viewport, so compact header and hero */
+@media (max-height:500px) and (orientation:landscape){
+.hdr{padding-top:calc(6px + env(safe-area-inset-top,0px))}.hdr .bar{padding:4px}.hdr .logo,.hdr nav{height:40px}.hdr .logo img{height:14px}
+.hdr .cta{height:40px;font-size:15px;padding-left:18px;gap:10px}.hdr .cta .ic{width:32px;height:32px}
+.hero-c .top{top:68px}.hero-c .word{font-size:min(10vw,24svh)}
+.hero-c .foot p{display:none}.hero-c .foot .wrap{padding-bottom:20px}
+.pill.light{height:44px;font-size:15px;padding-left:20px;gap:12px}.pill.light .ic{width:34px;height:34px}
+.manifesto p{font-size:clamp(22px,3.4vw,34px)}
 }
 
 /* D index */
@@ -397,7 +407,7 @@ body[data-hero="signal"] .hero-f{display:flex;flex-direction:column}
 @media (max-width:860px){.hero-f .b p,.hero-f .b .acts{grid-column:1/-1;justify-content:flex-start}}
 /* manifesto scrub */
 .manifesto{height:220vh;position:relative}
-.manifesto .stick{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.manifesto .stick{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
 .manifesto .wrap{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--grid-gap)}
 .manifesto .eb{grid-column:1/3;padding-top:14px}
 .manifesto p{grid-column:3/13;font-size:clamp(30px,4vw,62px);line-height:1.1;letter-spacing:-.03em;font-weight:500}
