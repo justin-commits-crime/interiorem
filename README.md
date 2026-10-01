@@ -24,4 +24,4 @@ python3 -m http.server 8000   # then open http://localhost:8000
 - The fonts are Google Fonts stand-ins; the original brand fonts weren't supplied.
 - The `#shopify` nav link points at a section that isn't built yet (its styles are in `.shop` in the CSS).
 - Placeholder content to replace: the five Work projects (names, copy and the two "Imagery to come" tiles), and the contact details (`hello@dasigned.com`, studio location, booking note).
-- The contact form has no backend. On submit it opens the visitor's email app with the enquiry addressed to the email link in the Contact section (`#cMail`), so changing that link changes where enquiries go.
+- The contact form submits to Wix: the **Dasigned Headless** project (site ID `0894e7cb-ad90-4d01-812c-294dd6eb27c2`), form **Website enquiry**. Submissions appear in that project's dashboard under Forms & Submissions, and each one creates or updates a contact. The site gets an anonymous visitor token with the OAuth client ID in `js/main.js` (public, no secret needed). If Wix can't be reached, the form falls back to opening the visitor's email app, addressed to the Contact section's email link (`#cMail`).

@@ -49,17 +49,31 @@ $$('.svc button').forEach(b=>b.onclick=()=>{const s=b.parentElement,o=s.classLis
 
 // form
 $$('.chips').forEach(c=>c.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(c.dataset.multi)b.classList.toggle('on');else[...c.children].forEach(x=>x.classList.toggle('on',x===b))}));
-// No backend yet: the enquiry is composed into an email to the studio address.
-const enq=$('#enq');if(enq)enq.onsubmit=e=>{e.preventDefault();
+// Enquiries go to the "Website enquiry" form on the Dasigned Headless Wix project,
+// submitted as an anonymous visitor. If Wix can't be reached, fall back to email.
+const WIX={clientId:'bc0f0f34-43fc-4212-ba25-56210dfdb736',formId:'698cba13-035d-44d2-bbee-7cfabe952e53'};
+const thanks=(eb,title,body)=>{$('#tEb').textContent=eb;$('#tTitle').textContent=title;$('#tBody').innerHTML=body;$('#cg').classList.add('sent')};
+async function sendToWix(f){
+  const t=await fetch('https://www.wixapis.com/oauth2/token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:WIX.clientId,grantType:'anonymous'})});
+  if(!t.ok)throw new Error('token '+t.status);
+  const {access_token}=await t.json();
+  const r=await fetch('https://www.wixapis.com/form-submission-service/v4/submissions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:access_token},
+    body:JSON.stringify({submission:{formId:WIX.formId,submissions:{name_5b1e:f.name,email_6c2f:f.email,services_7d3a:f.services,budget_8e4b:f.budget,message_9f5c:f.message}}})});
+  if(!r.ok)throw new Error('submit '+r.status);
+}
+const enq=$('#enq');if(enq)enq.onsubmit=async e=>{e.preventDefault();
 const bad=[...enq.querySelectorAll('input')].find(i=>!i.checkValidity());
 if(bad){$('#fNote').textContent='Please add your '+bad.name+'.';bad.focus();return}
-const to=$('#cMail').getAttribute('href').replace('mailto:',''),v=n=>enq.elements[n].value.trim();
-$('#tMail').textContent=to;
-const lines=['Name: '+v('name'),'Email: '+v('email')];
-$$('.chips').forEach(c=>{const on=[...c.querySelectorAll('.on')].map(b=>b.textContent);if(on.length)lines.push(c.dataset.name+': '+on.join(', '))});
-if(v('message'))lines.push('',v('message'));
-try{location.href='mailto:'+to+'?subject='+encodeURIComponent('Project enquiry — '+v('name'))+'&body='+encodeURIComponent(lines.join('\n'))}catch(err){}
-$('#cg').classList.add('sent')};
+const v=n=>enq.elements[n].value.trim(),chips=n=>[...$(`.chips[data-name="${n}"]`).querySelectorAll('.on')].map(b=>b.textContent).join(', ');
+const f={name:v('name'),email:v('email'),services:chips('Services'),budget:chips('Budget'),message:v('message')};
+const btn=enq.querySelector('[type=submit]');btn.disabled=true;$('#fNote').textContent='Sending…';
+try{await sendToWix(f);thanks('Received','Thanks, '+f.name.split(' ')[0]+'.','We’ve got your enquiry and will reply to '+f.email.replace(/</g,'&lt;')+' within two working days.');return}
+catch(err){console.warn('[enquiry] Wix submission failed, falling back to email:',err)}
+finally{btn.disabled=false;$('#fNote').textContent=''}
+const to=$('#cMail').getAttribute('href').replace('mailto:','');
+const lines=['Name: '+f.name,'Email: '+f.email];if(f.services)lines.push('Services: '+f.services);if(f.budget)lines.push('Budget: '+f.budget);if(f.message)lines.push('',f.message);
+try{location.href='mailto:'+to+'?subject='+encodeURIComponent('Project enquiry — '+f.name)+'&body='+encodeURIComponent(lines.join('\n'))}catch(err){}
+thanks('One more step','Send it from your email app.','We couldn’t send your enquiry directly. Your email app should open with it filled in. If it doesn’t, email it to <span class="mail">'+to+'</span> and we’ll reply within two working days.')};
 
 setHero(new URLSearchParams(location.search).get('hero')||document.body.dataset.hero);
 })();
