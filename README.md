@@ -12,6 +12,10 @@ assets/fonts/     Instrument Sans, Archivo, IBM Plex Mono (woff2, self-hosted)
 assets/img/       logos and hero imagery
 ```
 
+## Live site
+
+https://instant-isibyydvsuka-dasigned-1408.wix-site-host.com/ (Wix project "Dasigned — Designed Differently", uploaded through Wix's drop page). Its domain is on the OAuth client's allowed list so the contact form can submit; add any new domain there too.
+
 ## Run locally
 
 ```sh
