@@ -349,6 +349,7 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hdr .bar{padding:4px}.hdr .logo{height:46px}.menu-btn{width:46px;height:46px}.hdr .logo{padding:0 18px}.hdr .logo img{height:15px}.hdr .cta{height:46px;padding:0 4px;gap:0}.hdr .cta .ic{width:38px;height:38px;background:transparent;color:var(--white)}.hdr .cta .t{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .hero-c .hint{display:none}
 .hero-c .word{font-size:clamp(44px,15vw,72px)}
+.hero-c .in3{background-size:auto 80%;background-position:45% 60%;background-repeat:no-repeat}
 .hero-c .w1{right:auto;left:var(--pad);top:42%}
 .hero-c .w2{left:auto;right:var(--pad);top:56%}
 .hero-c .foot{background:linear-gradient(to bottom,rgba(17,17,19,0),rgba(17,17,19,.75) 45%,var(--ink) 75%);padding-top:120px}
