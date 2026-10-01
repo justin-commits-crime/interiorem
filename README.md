@@ -18,6 +18,14 @@ assets/img/       logos and hero imagery
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
+## Upload to Wix
+
+Wix's drop page (wix.com/headless/drop) takes up to 3 MB per file and 20 MB in total. Zip only the site files, never the repo or `.git`:
+
+```sh
+zip -r dist/dasigned-site.zip index.html css js assets
+```
+
 ## Notes
 
 - `?hero=` in the URL selects a hero variant (`slash` is the only one with markup in `index.html`; the CSS for the other variants, `manifesto`, `editorial`, `index`, `annotated` and `signal`, is kept for when those sections are added).
