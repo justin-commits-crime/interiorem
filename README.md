@@ -1,6 +1,6 @@
 # interiorem
 
-Static frontend for **Dasigned**, a design & Shopify studio: the header, the scroll-driven "Designed / Differently" slash hero, and the "The idea" manifesto.
+Static frontend for **Dasigned**, a design & Shopify studio: the header, the scroll-driven "Designed / Differently" slash hero, the "The idea" manifesto, and the Work, Services and Contact sections.
 
 Unpacked from the Claude Design export *Dasigned — Header, hero & idea* into plain files. There's no build step.
 
@@ -22,4 +22,6 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 - `?hero=` in the URL selects a hero variant (`slash` is the only one with markup in `index.html`; the CSS for the other variants, `manifesto`, `editorial`, `index`, `annotated` and `signal`, is kept for when those sections are added).
 - The fonts are Google Fonts stand-ins; the original brand fonts weren't supplied.
-- Nav links (`#work`, `#services`, `#shopify`, `#contact`) point at sections that aren't built yet.
+- The `#shopify` nav link points at a section that isn't built yet (its styles are in `.shop` in the CSS).
+- Placeholder content to replace: the five Work projects (names, copy and the two "Imagery to come" tiles), and the contact details (`hello@dasigned.com`, studio location, booking note).
+- The contact form has no backend. On submit it opens the visitor's email app with the enquiry addressed to the email link in the Contact section (`#cMail`), so changing that link changes where enquiries go.

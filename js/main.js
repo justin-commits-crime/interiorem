@@ -45,11 +45,20 @@ const dp=$('#dprev');let px=0,py=0,pt=[0,0];
 $$('.idx-row').forEach(r=>{r.onmouseenter=()=>{dp.style.backgroundImage='url(ds/assets/imagery/'+r.dataset.img+')';dp.classList.add('on')};r.onmouseleave=()=>dp.classList.remove('on')});
 (function dl(){px+=(tx-px)*.12;py+=(ty-py)*.12;dp.style.left=px+'px';dp.style.top=py+'px';requestAnimationFrame(dl)})();
 // services
-$$('.svc button').forEach(b=>b.onclick=()=>{const s=b.parentElement,o=s.classList.contains('open');$$('.svc').forEach(x=>x.classList.remove('open'));if(!o)s.classList.add('open')});
+$$('.svc button').forEach(b=>b.onclick=()=>{const s=b.parentElement,o=s.classList.contains('open');$$('.svc').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false')});if(!o){s.classList.add('open');b.setAttribute('aria-expanded','true')}});
 
 // form
 $$('.chips').forEach(c=>c.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(c.dataset.multi)b.classList.toggle('on');else[...c.children].forEach(x=>x.classList.toggle('on',x===b))}));
-const enq=$('#enq');if(enq)enq.onsubmit=e=>{e.preventDefault();$('#cg').classList.add('sent')};
+// No backend yet: the enquiry is composed into an email to the studio address.
+const enq=$('#enq');if(enq)enq.onsubmit=e=>{e.preventDefault();
+const bad=[...enq.querySelectorAll('input')].find(i=>!i.checkValidity());
+if(bad){$('#fNote').textContent='Please add your '+bad.name+'.';bad.focus();return}
+const to=$('#cMail').getAttribute('href').replace('mailto:',''),v=n=>enq.elements[n].value.trim();
+const lines=['Name: '+v('name'),'Email: '+v('email')];
+$$('.chips').forEach(c=>{const on=[...c.querySelectorAll('.on')].map(b=>b.textContent);if(on.length)lines.push(c.dataset.name+': '+on.join(', '))});
+if(v('message'))lines.push('',v('message'));
+location.href='mailto:'+to+'?subject='+encodeURIComponent('Project enquiry — '+v('name'))+'&body='+encodeURIComponent(lines.join('\n'));
+$('#cg').classList.add('sent')};
 
 setHero(new URLSearchParams(location.search).get('hero')||document.body.dataset.hero);
 })();
