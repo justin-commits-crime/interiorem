@@ -16,7 +16,7 @@ let sp=0,mx=0,my=0,ax=0,ay=0;
 addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
 (function t3(now){ax+=(mx-ax)*.05;ay+=(my-ay)*.05;const ci=$('#cIn'),s=(now||0)/1000;
 if(ci&&document.body.dataset.hero==='slash'){const f=lerp(1,.45,sp),bx=Math.sin(s*.6)*14*f,by=Math.sin(s*.9)*18*f,rz=Math.sin(s*.45)*2.2*f,rx=Math.cos(s*.7)*3*f,ry=Math.sin(s*.5)*4*f;
-ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${innerWidth>600?lerp(1.4,1.14,sp):lerp(1.2,1.04,sp)})`;
+ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${innerWidth>600?lerp(1.4,1.14,sp):lerp(1.2,1.08,sp)})`;
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
 const hdr=$('#hdr');let lastY=0;
 const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
