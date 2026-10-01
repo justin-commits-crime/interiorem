@@ -333,12 +333,11 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hero-c .top .wrap{display:flex;justify-content:space-between}
 .hero-c .top .eb{color:var(--grey-400);font-size:10px}
 .hero-c .top .eb:first-child{color:var(--blue-600)}
-.hero-c .hint{transition:opacity var(--dur-slow)}
+.hero-c .hint{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);font:400 12px/1 var(--font-sans);color:var(--grey-400);background:var(--ink);padding:4px 8px;pointer-events:none;transition:opacity var(--dur-slow)}
 
 @media (max-width:600px){
 .sec-head{flex-wrap:wrap;align-items:flex-start}
 .hdr .bar{padding:4px}.hdr .logo{height:46px}.menu-btn{width:46px;height:46px}.hdr .logo{padding:0 18px}.hdr .logo img{height:15px}
-.hero-c .hint{display:none}
 .hero-c .word{font-size:clamp(44px,15vw,72px)}
 .hero-c .w1{right:auto;left:var(--pad);top:42%}
 .hero-c .w2{left:auto;right:var(--pad);top:56%}
