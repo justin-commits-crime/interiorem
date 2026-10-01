@@ -4,7 +4,7 @@ const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
 $$('.rv,.contact h2').forEach(el=>io.observe(el));
 
-window.setHero=h=>{document.body.dataset.hero=h;document.body.classList.toggle('dark-top',h==='slash'||h==='signal');
+window.setHero=h=>{document.body.dataset.hero=h;
 const el=$('.hero-'+{manifesto:'a',editorial:'b',slash:'c',index:'d',annotated:'e',signal:'f'}[h]);el.classList.remove('in');void el.offsetWidth;setTimeout(()=>el.classList.add('in'),30);tick()};
 
 // manifesto words
@@ -19,8 +19,11 @@ if(ci&&document.body.dataset.hero==='slash'){const f=lerp(1,.45,sp),bx=Math.sin(
 ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${lerp(1.4,1.14,sp)})`;
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
 const hdr=$('#hdr');let lastY=0;
+const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
 function tick(){const y=scrollY,vh=innerHeight;
-hdr.classList.toggle('solid',document.body.dataset.hero==='slash'?y>$('#heroC').offsetHeight-90:y>40);
+// highlight the nav link for the section under the header; the hero counts as About
+let cur='manifesto',best=-Infinity;[...navSecs,'contact'].forEach(id=>{const el=document.getElementById(id),t=el?el.getBoundingClientRect().top:Infinity;if(t<=vh*.4&&t>best){best=t;cur=id}});
+navLinks.forEach(a=>a.dataset.sec===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
 hdr.classList.toggle('hide',y>lastY&&y>600);lastY=y;
 const hero=document.body.dataset.hero;
 if(hero==='manifesto'){const s=$('#strip');s.style.transform=`translateX(${-y*.35}px)`}
