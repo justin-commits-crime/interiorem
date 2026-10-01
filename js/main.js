@@ -19,15 +19,6 @@ if(ci&&document.body.dataset.hero==='slash'){const f=lerp(1,.45,sp),bx=Math.sin(
 ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${innerWidth>600?lerp(1.4,1.14,sp):lerp(1.2,1.08,sp)})`;
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
 const hdr=$('#hdr');
-// header hides when scrolling down and comes back when scrolling up (always shown at the top or with the menu open)
-let lastY=scrollY;
-addEventListener('scroll',()=>{
-  const y=scrollY,d=y-lastY;
-  if(y<=40||hdr.classList.contains('open'))hdr.classList.remove('hide');
-  else if(d>4)hdr.classList.add('hide');
-  else if(d<-4)hdr.classList.remove('hide');
-  if(Math.abs(d)>4||y<=40)lastY=y;
-},{passive:true});
 const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
 // menu button opens the full menu panel under the header (at every width)
 const menuBtn=$('#menuBtn');
@@ -38,6 +29,8 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('open
 document.addEventListener('click',e=>{if(hdr.classList.contains('open')&&!hdr.contains(e.target))setMenu(false)});
 function tick(){const y=scrollY,vh=innerHeight;
 hdr.classList.toggle('compact',y>40);
+// header stays hidden over the hero and appears once 'The idea' is halfway up the screen
+hdr.classList.toggle('hide',$('#manifesto').getBoundingClientRect().top>vh*.5&&!hdr.classList.contains('open'));
 // highlight the nav link for the section under the header; the hero counts as About
 let cur='manifesto',best=-Infinity;[...navSecs,'contact'].forEach(id=>{const el=document.getElementById(id),t=el?el.getBoundingClientRect().top:Infinity;if(t<=vh*.4&&t>best){best=t;cur=id}});
 navLinks.forEach(a=>a.dataset.sec===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
