@@ -326,8 +326,8 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hero-c .grid{position:absolute;inset:0;pointer-events:none;display:grid;grid-template-columns:repeat(4,1fr)}
 .hero-c .grid i{border-left:1px solid rgba(255,255,255,.22)}.hero-c .grid i:first-child{grid-column:2}
 .hero-c .foot{position:absolute;left:0;right:0;bottom:0}
-.hero-c .foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:40px;flex-wrap:wrap}
-.hero-c .foot p{max-width:46ch;font-size:var(--fs-body-l);color:var(--grey-300)}
+.hero-c .foot .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:54px;flex-wrap:wrap}
+.hero-c .foot p{max-width:46ch;font-size:15px;color:var(--grey-300)}
 
 .hero-c .top{position:absolute;top:110px;left:0;right:0}
 .hero-c .top .wrap{display:flex;justify-content:space-between}
