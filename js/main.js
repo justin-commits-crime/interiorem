@@ -19,6 +19,12 @@ if(ci&&document.body.dataset.hero==='slash'){const f=lerp(1,.45,sp),bx=Math.sin(
 ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${innerWidth>600?lerp(1.4,1.14,sp):lerp(1.2,1.08,sp)})`;
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
 const hdr=$('#hdr');
+// header slides away while the page is scrolling and comes back once scrolling stops
+let scrollIdle;
+addEventListener('scroll',()=>{
+  if(scrollY>40&&!hdr.classList.contains('open'))hdr.classList.add('hide');
+  clearTimeout(scrollIdle);scrollIdle=setTimeout(()=>hdr.classList.remove('hide'),450);
+},{passive:true});
 const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
 // menu button opens the full menu panel under the header (at every width)
 const menuBtn=$('#menuBtn');
