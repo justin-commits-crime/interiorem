@@ -18,7 +18,7 @@ addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/inner
 if(ci&&document.body.dataset.hero==='slash'){const f=lerp(1,.45,sp),bx=Math.sin(s*.6)*14*f,by=Math.sin(s*.9)*18*f,rz=Math.sin(s*.45)*2.2*f,rx=Math.cos(s*.7)*3*f,ry=Math.sin(s*.5)*4*f;
 ci.style.transform=`translate3d(${bx-ax*40}px,${by-ay*30+lerp(60,0,sp)}px,${lerp(-320,0,sp)}px) rotateX(${lerp(18,0,sp)+rx-ay*14}deg) rotateY(${lerp(-24,0,sp)+ry+ax*18}deg) rotateZ(${lerp(-6,0,sp)+rz}deg) scale(${innerWidth>600?lerp(1.4,1.14,sp):lerp(1.2,1.08,sp)})`;
 ci.style.filter=`blur(${lerp(3,0,Math.min(1,sp*2.5))}px)`}requestAnimationFrame(t3)})();
-const hdr=$('#hdr');let lastY=0;
+const hdr=$('#hdr');
 const navLinks=$$('.hdr nav a'),navSecs=navLinks.map(a=>a.dataset.sec);
 // menu button opens the full menu panel under the header (at every width)
 const menuBtn=$('#menuBtn');
@@ -31,7 +31,7 @@ function tick(){const y=scrollY,vh=innerHeight;
 // highlight the nav link for the section under the header; the hero counts as About
 let cur='manifesto',best=-Infinity;[...navSecs,'contact'].forEach(id=>{const el=document.getElementById(id),t=el?el.getBoundingClientRect().top:Infinity;if(t<=vh*.4&&t>best){best=t;cur=id}});
 navLinks.forEach(a=>a.dataset.sec===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
-hdr.classList.toggle('hide',y>lastY&&y>600&&!hdr.classList.contains('open'));lastY=y;
+
 const hero=document.body.dataset.hero;
 if(hero==='manifesto'){const s=$('#strip');s.style.transform=`translateX(${-y*.35}px)`}
 if(hero==='editorial'){$('#bImg').style.transform=`scale(${lerp(1.18,1,clamp(y/vh))}) translateY(${y*.06}px)`}

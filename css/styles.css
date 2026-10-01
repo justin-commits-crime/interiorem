@@ -245,8 +245,7 @@ a{color:var(--ink)}a:hover{color:var(--accent)}
 /* header */
 /* header: editorial masthead. Logo + menu button, then a ruled row of equal-width links */
 :root{--hdr-h:145px}
-.hdr{position:fixed;inset:0 0 auto 0;z-index:var(--z-header);background:var(--white);padding-top:env(safe-area-inset-top,0px);transition:transform var(--dur-slow) var(--ease-out)}
-.hdr.hide{transform:translateY(-100%)}
+.hdr{position:fixed;inset:0 0 auto 0;z-index:var(--z-header);background:var(--white);padding-top:env(safe-area-inset-top,0px);}
 .hdr .row{display:flex;align-items:center;justify-content:space-between;gap:24px;height:96px}
 .hdr .logo img{height:26px;width:auto}
 .menu-btn{flex:none;width:44px;height:44px;margin-right:-6px;background:none;border:0;padding:0;cursor:pointer;position:relative;color:var(--ink)}
