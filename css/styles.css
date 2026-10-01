@@ -354,6 +354,8 @@ body[data-hero="manifesto"] .hero-a,body[data-hero="editorial"] .hero-b,body[dat
 .hdr.open nav{top:calc(100% + 6px);padding:6px;border-radius:22px}.hdr.open nav a{font-size:19px;padding:11px 18px;border-radius:16px}
 }
 
+@media (max-width:360px){.hero-c .top .eb{font-size:11px;letter-spacing:.1em}}
+
 /* D index */
 .hero-d{padding-top:84px}
 .hero-d .top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--grid-gap);padding:48px 0 56px;align-items:end}
